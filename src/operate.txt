@@ -1,0 +1,19 @@
+yy:copy the line which the cursor on: yy
+y2w:copy the two word: y2w
+p:paste: p
+dd:delete the line : dd
+ndd:delete the n*line started with current line: ndd
+dw:delete the one word form now on:dw
+ndw:
+ctrl+u : move to the top of file
+ctrl+d : move to the bottom of file
+shift+h : move to the first line of scene 
+shift+l
+:n  : to the n line
+^ : to line head
+$ : to line tail
+/xx : find xx
+n :find next
+N :find last
+u :cancel the change
+U :re the change
