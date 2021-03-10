@@ -1,17 +1,11 @@
-Linear Algebra
-
-
-
-
-
-how to compile:
+How to compile:
 1:mkdir build 
 2:cd build
 3:cmake ..
 4:make		# compile the program
 4:./Transformation	# run the program
 
-
+///////
 CMakeLists.txt file:
 cmake_minimum_required (VERSION 2.8.11)		# set the minimum version of camke required to run this profile
 project (Transformation)			# set the project name
@@ -20,3 +14,98 @@ find_package(Eigen3 REQUIRED)			# using find_package to include external depende
 include_directories(EIGEN3_INCLUDE_DIR)		#
 
 add_executable (Transformation main.cpp)	# add the executable
+
+///////
+2021-3-10:
+lesson2:
+usually used Unit Vector to represent directions
+default think the vertor is the column vector:   
+	A = (x)
+	    (y)
+	Tranpose(A) = (x,y), ||A||=sqrt(x*x + y*y)
+
+Dot(scalar) product: can get the included angle of two vector
+	VectorA .Dot VectorB = ||A||*||B||*cos(thet)
+	cos(thet) = (VectorA .Dot VectorB) / (||A||*||B||)
+	(for unit vectors): cos(thet) = unitVectorA .Dot unitVectorB
+
+	(2D) VectorA .Dot VectorB = xa*xb + ya*yb
+	(3D) VectorA .Dot VectorB = xa*xb + ya*yb + za*zb
+Dot Product in Graphics:
+	Find angle between two vectors
+	(e.g. cosine of angle between light source and sufface)
+	Finding projection of one vector on another
+	Measure how close two directions are
+	Decompose a vector
+	Determine forward/backward
+		dot product > 0 : forward
+		dot product < 0 : backward
+		dot product = 0 : two vectors vertical
+		two directions dot close to 1: is close (1 is the same direction)
+		two directions dot close to -1: is un-close (-1 is the polar direction)
+
+Cross(vector) product
+	Cross product is orthogonal to two initial vectors
+	Direction determined by right-hand rule
+	Useful in constructing coordinate systems
+	(VectorA Cross VectorB) is direction polar with (VectorB Cross VectorA)
+	
+	VectorA Cross VectorB = -VectorB Cross VectorA
+	VectorA Cross VectorA = VectorZero
+	||VectorA Cross VectorB|| = ||VectorA||*||VectorB||*sin(phi)
+
+	if x cross y = +z :right-hand system
+	if x cross y = -z :left-hand system
+
+	VectorA Cross VectorB = (ya*zb-yb*za)
+				(za*xb-xa*zb)
+				(xa*yb-ya*xb)
+	using matrix show vectorA: (xa ya za) = (0 -za ya)
+						(za 0 -xa)
+						(-ya xa 0)
+Cross Product in Graphics:
+	Determine left/right
+	Determine inside/outside  yesyesyes!!!
+
+Orthonormal bases and coordinate frames
+
+
+Matrices
+	Matrix is Array of numbers(m*n = m rows, ncolumns)
+	(number of)columns in A must = rows in B
+		(M * N)(N * P) = (M * P)
+
+	Matrix-Vector Muliplication
+		Treat vector as a column matrix(m * 1)
+		Key for transforming points
+	Officail spoiler:2D reflection about y-axis:
+		(-1 0) (x)   (-x)
+		( 0 1) (y) = ( y)
+
+	Transpose(AB) = Transpose(B) * Transpose(A)
+
+	I(3*3) = (1 0 0)    # unit martix
+		 (0 1 0)
+		 (0 0 1)
+	A*inverse(A) = inverse(A)*A = I
+	inverse(A*B) = inverse(B)*inverse(A)
+
+
+
+	homogeneous coodinate
+	Translation
+	Rotation
+	Shear
+	Scale
+
+
+
+////////////
+assignment0:
+1,test the matrix operation
+
+
+
+
+
+

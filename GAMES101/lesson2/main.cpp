@@ -4,7 +4,9 @@
 #include<iostream>
 
 int main(){
-
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    /*
     // Basic Example of cpp
     std::cout << "Example of cpp \n";
     float a = 1.0, b = 2.0;
@@ -40,9 +42,17 @@ int main(){
     std::cout << "Example of output \n";
     std::cout << i << std::endl;
     // matrix add i + j
+    std::cout<< i + j <<'\n';
     // matrix scalar multiply i * 2.0
+    std::cout<< i * 2.0f <<'\n';
     // matrix multiply i * j
+    std::cout<< i * j <<'\n';
     // matrix multiply vector i * v
+    std::cout<< i * v <<'\n';
+    */
+
+    Eigen::Vector2f point(2,1);
+    std::cout<< point<<'\n';
 
     return 0;
 }
