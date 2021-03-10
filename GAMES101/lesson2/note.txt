@@ -1,0 +1,22 @@
+Linear Algebra
+
+
+
+
+
+how to compile:
+1:mkdir build 
+2:cd build
+3:cmake ..
+4:make		# compile the program
+4:./Transformation	# run the program
+
+
+CMakeLists.txt file:
+cmake_minimum_required (VERSION 2.8.11)		# set the minimum version of camke required to run this profile
+project (Transformation)			# set the project name
+
+find_package(Eigen3 REQUIRED)			# using find_package to include external dependent package
+include_directories(EIGEN3_INCLUDE_DIR)		#
+
+add_executable (Transformation main.cpp)	# add the executable
