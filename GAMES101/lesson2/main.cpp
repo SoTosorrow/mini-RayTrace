@@ -3,9 +3,22 @@
 #include<eigen3/Eigen/Dense>
 #include<iostream>
 
-int main(){
+int main(int argc,char* argv[]){
     std::ios::sync_with_stdio(false);
     std::cin.tie(NULL);
+
+    // argc:numbe of parameter,if have no parameter,argc = 1(itself)
+    // argv[0]  is itself
+    // argv[1] first parameter..
+    // > ./first_test 45
+    bool input_degree = false;
+    for(int i=0;i<argc;i++){
+    	if(i == 1){
+		input_degree = true;
+	}
+    
+    }
+    
     /*
     // Basic Example of cpp
     std::cout << "Example of cpp \n";
@@ -51,8 +64,30 @@ int main(){
     std::cout<< i * v <<'\n';
     */
 
-    Eigen::Vector2f point(2,1);
-    std::cout<< point<<'\n';
-
+    // create a point(2,1)
+    Eigen::Vector3f point(2.0f,1.0f,1.0f);
+    Eigen::Matrix3f rotation_matrix;
+    Eigen::Matrix3f translation_matrix;
+    Eigen::Vector3f translation_point;
+    double d = 90.0;
+    if(input_degree){
+    	d = std::atof(argv[1]);
+    }
+    std::cout<<"degree:"<<d<<'\n';
+    d = d/180.0*M_PI;
+  
+    // rotation matrix
+    rotation_matrix << std::cos(d), -1.0*std::sin(d), 0,
+		    std::sin(d), std::cos(d), 0,
+		    0, 0, 1;
+    // R45(CCW)
+    // translation (1,2)
+    translation_matrix << 1, 0, 1,
+		       	  0, 1, 2,
+			  0, 0, 1;
+    translation_point = translation_matrix * rotation_matrix * point;
+    std::cout<<translation_point << '\n';
+    
+    
     return 0;
 }

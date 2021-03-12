@@ -92,19 +92,107 @@ Matrices
 
 
 
-	homogeneous coodinate
-	Translation
-	Rotation
-	Shear
-	Scale
+///////////////
+2021-3-12:
+lesson3:
+	2D Transformations
+		Scale	x'=s*x	 y'=s*y
+			[x']   [s1 0][x]
+			[y'] = [0 s2][y]
+
+		Shear	Hroizontal shear
+			[x']   [1 a][x]
+			[y'] = [0 1][y]
+
+		Rotate (about the origin(0,0), CCW by default) 
+			CCW:counterclockwise CW:clockwise
+			Rotation Matrix:
+			R(thet) = [cos -sin]
+				  [sin  cos]
+			(x')   (cos -sin)(x)
+			(y') = (sin  cos)(y)
+	
+	Why homogeneous coordinate
+		Translation cannot be represented in matrix form
+		[x']   [a b][x]   [tx]
+		[y'] = [c d][y] + [ty]
+		So translation is NOT linear transform
+			Is there a unified way to represent all transformations?
+	Solution:Homogeneous Coordinates
+		Add a third coordinate (w-coordinate):
+		2D point = transpose(x, y, 1)
+		2D Vector = transpose(x, y, 0)
+
+		Matrix representation of translations:
+		(x')   (1 0 tx)   (x)   (x+tx)
+		(y') = (0 1 ty) * (y) = (y+tx)
+		(w')   (0 0  1)   (1)   ( 1  )
+	In homogeneous coordinates
+		(x)                 (x/w)
+		(y) is the 2D point (y/w), w != 0
+		(w)                 ( 1 )
+	Valid operation if w-coordinate of result is 1 or 0
+		vector + vector = vector
+		point - point = vector
+		point + vector = point
+		point + point = midpoint of two points
+
+	Affine Transformations
+	Affine map = linear map + translation
+		(x')   (a b)(x)   (tx)
+		(y') = (c d)(y) + (ty)
+	Using homogeneous coordinates:
+		(x')   (a b tx)   (x)
+		(y') = (c d ty) * (y)
+		(1 )   (0 0  1)   (1)
+		
+		Scale(sx,sy) = (sx  0  0)
+			       (0  sy  0)
+			       (0   0  1)
+		
+		R(thet) = (cos -sin  0)
+			  (sin  cos  0)
+			  ( 0    0   1)
+
+		Translation(tx,ty) = 	(1 0 tx)
+					(0 1 ty)
+					(0 0  1)
+	Inverse Transform
+		M^-1 is the inverse of transform M in both a matrix and geometric sense
+			* Inverse(matrix)
+	Composing Transform
+		Transform Ordering Matters!
+		Matrix multiplication is not commutative
+		Note that matrices are applied right to left
+	Decomposing Complex Transform
+		Rotate about the custom position c:
+			Transform center to origin then Rotate finally Transform back
+			T(c)*R(thet)*T(-c)  // operate from right to left
+
+
+	3D Transforms
+		Use homogeneous coordinates again:
+		3D point = transpose(x, y, z, 1)
+		3D Vector = transpose(x, y, z, 0)
+		
+		In general, (x,y,z,w)(w != 0) is the 3D point: (x/w, y/w, z/w)
+	
+	Use 4*4 matrices for affine transformations:
+		(x')   (a b c tx) (x)
+		(y')   (d e f ty) (y)
+		(z') = (g h i tz)*(z)
+		(1 )   (0 0 0  1) (1)
+	as the affine :first linear transform then translation
+	
+			
 
 
 
 ////////////
 assignment0:
-1,test the matrix operation
-
-
+1, test the matrix operation
+2, complete the assignment0
+3, use the argv to input custom degree parameter
 
 
 
