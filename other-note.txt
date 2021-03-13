@@ -1,0 +1,3 @@
+make a program backstage running: &
+	e.g. gedit note.txt&
+find process: ps aux

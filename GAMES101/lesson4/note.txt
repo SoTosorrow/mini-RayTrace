@@ -1,0 +1,136 @@
+////////////
+2021-3-13
+lesson4:
+	
+	R(thet) = (cos -sin)
+		  (sin  cos)
+	R(-thet) = (cos  sin) = Transpose(R(thet))  (by deduction)
+		   (-sin cos)
+	R(-thet) = Inverse(R(thet))  (by definition)
+
+	In Rotation: Transposes(matrix) = Inverse(matrix)	
+	In Math: if Transposes(matrix) = Inverse(matrix) : Orthogonal Matrix
+
+	3D Transformations
+		3D point = Transpose(x,y,z,1)
+		3D vector = Transpose(x,y,z,0)
+
+		In general ,(x,y,z,w)(w!=0) is the 3dPoint: (x/w,y/w,z/w)
+		
+		(x')   (a b c tx) (x)
+		(y')   (d e f ty) (y)
+		(z') = (g h i tz)*(z)
+		(1 )   (0 0 0  1) (1)
+
+		Scale(sx,sy,sz) = (sx 0 0 0)
+				  (0 sy 0 0)
+				  (0 0 sz 0)
+				  (0  0 0 1)
+
+		Translation(tx,ty,tz) = (1 0 0 tx)
+					(0 1 0 ty)
+					(0 0 1 tz)
+					(0 0 0  1)
+
+		Rotation around x-,y-, or z-axis
+		Rx(d) = (1   0   0  0)    // x is invariant, so first col and row is 1000
+			(0 cos -sin 0)
+			(0 sin  cos 0)
+			(0  0    0  1)
+
+		Ry(d) = (cos  0 sin 0)   // y is invariant, so second col and row is 0100
+			(  0  1   0 0)
+			(-sin 0 cos 0)
+			(  0  0   0 1)
+		(why Ry is strange: Z .Cross X = Y)
+
+		Rz(d) = (cos -sin 0 0)   // z is invariant, so third col and row is 0010
+			(sin  cos 0 0)
+			(0     0  1 0)
+			(0     0  0 1)
+
+		Compose any 3D rotation from Rx,Ry,Rz?
+			Rxyz(a,b,c) = Rx(a)Ry(b)Rz(c)
+			So-called Euler angles
+			Often used in flight simulators: roll, pitch ,yaw
+
+		Rodrigues' Rotation Formula
+		Rotation by angle a around axis n:
+			R(n,a) = cos(a)I + (1-cos(a))n*Transpose(n) + sin(a)(0 -nz ny)
+									    (nz 0 -nx)
+									    (-ny nx 0)
+				(0 -nz ny)
+				(nz 0 -nx) is the matix form of vector
+				(-ny nx 0)
+	 
+	 
+
+	Viewing transformation
+	-View/Camera transformation
+	-Projection transformation
+		-Orthographics projection
+		-Perspective projection
+
+
+	View/Camera transformation:
+
+		Model transformation -> View transformation-> Project transformation
+
+		How to perform view transformaiton:
+		Define the camera first:
+			Position  e
+			Look-at /gze direction   g
+			Up-direction(assuming prep.to look-at)  t
+		Key observation
+		How about that we always transform the camera to:
+			Place at The origin,up at Y,look at -Z (conventional cules)
+			And transform the objects along with the camera
+
+
+		Mview in math:
+			1,Tranlates e to origin
+			2,Rotates g to -z
+			3,Rotates t to Y
+			4,Rotates g corss t to X
+
+			Mview = Rview*Tview
+			1,Translation postion e to origin:
+				Tview = (1 0 0 -xe)
+					(0 1 0 -ye)
+					(0 0 1 -ze)
+					(0 0 0  1)
+			2-4,Rotate Look-at g to -Z,t to T (g .Cross t) to X
+			Consider its inverse rotation: X to (g corss y),Y to t, Z to -g
+						 (x(gcorsst) xt x(-g) 0)
+				Inverse(Rview) = (y(gcorsst) yt y(-g) 0) 
+						 (z(gcorsst) zt z(-g) 0)
+						 (        0   0    0  1)
+				SO --> Transpose = 
+					(x(gcorsst) y(gcorsst) z(gcorsst) 0)
+				Rview = (        xt         yt         zt 0) 
+					(     x(-g)      y(-g)      z(-g) 0)
+					(         0          0         0  1)	
+
+
+
+
+	Orthographics projection:
+	
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
